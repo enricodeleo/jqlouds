@@ -16,7 +16,7 @@ In your web page:
 <script src="dist/jqlouds.min.js"></script>
 <script>
 jQuery(function($) {
-  $.awesome(); // "awesome"
+  $('.selector').jQlouds();
 });
 </script>
 ```
