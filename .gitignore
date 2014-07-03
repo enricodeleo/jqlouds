@@ -5,6 +5,10 @@ bower_components/
 build/
 dist/
 
+#testing
+test/
+.travis.yml
+
 #Mac_OS
 .DS_Store
 .AppleDouble
