@@ -1,6 +1,9 @@
-/node_modules/
-/bower_components/
-dist
+#Yeoman
+node_modules/
+bower_components/
+*.log
+build/
+dist/
 
 #Mac_OS
 .DS_Store
