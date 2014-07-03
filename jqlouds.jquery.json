@@ -1,0 +1,28 @@
+{
+  "name": "jqlouds",
+  "title": "jQlouds",
+  "description": "An awesome yet simple plugin for jquery that let's you create clouds on the fly.",
+  "version": "0.1",
+  "homepage": "https://github.com/enricodeleo/jqlouds",
+  "author": {
+    "name": "Enrico Deleo",
+    "url": "https://github.com/enricodeleo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/enricodeleo/jqlouds"
+  },
+  "bugs": "https://github.com/enricodeleo/jqlouds/issues",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.9"
+  },
+  "keywords": [
+    "jquery-plugin"
+  ]
+}
