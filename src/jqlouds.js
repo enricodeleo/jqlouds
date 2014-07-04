@@ -22,14 +22,27 @@
   $.fn.jQlouds = function (options) {
     options = $.extend({}, $.jQlouds.options, options);
     return this.each(function (i) {
-      // Do something awesome to each selected element.
-      var clouds = $.jQlouds.cloudsFactory(options);
-      $(this).append(clouds);
+      // retrieve clouds and append to the target element.
+      var clouds = $.jQlouds.jQloudsFactory(options);
+      $(this).addClass('jqlouds-clouds').append(clouds);
 
-      //ok first animation, then this event will be triggered every time the previous animation ends
-      $(document).trigger('animateNow');
+      //trigger init if we decided to turn  wind on
+      if ( options.wind === true ) {
+        $(this).trigger('jqlouds.init', [ $(this) ]);
+      }
+
     });
   };
+
+  $(document).on('jqlouds.init', function(event, element) {
+    element.find('img.jqlouds-cloud').each(function() {
+      $.jQlouds.jQloudsAnimate($(this));
+    });
+  });
+
+  $(document).on('jqlouds.wind', function(event, element) {
+      $.jQlouds.jQloudsAnimate(element);
+  });
 
   // Static method.
   $.jQlouds = function (options) {
@@ -48,15 +61,16 @@
     maxHeight: 96, // min image's height
     minClouds: 20, // minimum amount of clouds
     maxClouds: 30, // maximum amount of clouds
+    wind: true,
     onGenerate: function(){},
     onAnimate: function(){},
     skyHeight: $(this).height(),
     skyWidth: $(this).width()
   };
 
-  $.jQlouds.cloudsFactory = function(options) {
+  $.jQlouds.jQloudsFactory = function(options) {
 
-    var clouds;
+    var clouds = '';
     var randomClouds = $.randomBetween(options.minClouds, options.maxClouds);
 
     // generate a bunch of clouds as per settings and some randomness
@@ -65,7 +79,7 @@
       var sizeRatio = $.randomBetween(1, 4);
 
       var cloud = $('<img />', {
-        className: 'cloud-up',
+        class: 'jqlouds-cloud',
         src: options.src,
         height: Math.floor(options.maxHeight/sizeRatio),
         width: Math.floor(options.maxWidth/sizeRatio),
@@ -96,21 +110,12 @@
 
   };
 
-    //recall animation
-  $(document).on('animateNow', function() {
-
-    $('.cloud-up').each(function(i, obj) {
-      $.jQlouds.animateCloud($(this));
-    });
-
-  });
-
-  $.jQlouds.animateCloud = function(element) {
+  $.jQlouds.jQloudsAnimate = function(element) {
     element.animate({left: '+='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear').
     animate({left: '+='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear').
     animate({left: '-='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear').delay($.randomBetween(4000, 10000)).
     animate({left: '-='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear', function() {
-      $(document).trigger('animateNow');
+      $(document).trigger('jqlouds.wind',[ element ]);
     });
   };
 
