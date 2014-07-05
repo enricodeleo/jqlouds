@@ -34,16 +34,6 @@
     });
   };
 
-  $(document).on('jqlouds.init', function(event, element) {
-    element.find('img.jqlouds-cloud').each(function() {
-      $.jQlouds.jQloudsAnimate($(this));
-    });
-  });
-
-  $(document).on('jqlouds.wind', function(event, element) {
-      $.jQlouds.jQloudsAnimate(element);
-  });
-
   // Static method.
   $.jQlouds = function (options) {
     // Override default options with passed-in options.
@@ -62,8 +52,6 @@
     minClouds: 20, // minimum amount of clouds
     maxClouds: 30, // maximum amount of clouds
     wind: true,
-    onGenerate: function(){},
-    onAnimate: function(){},
     skyHeight: $(this).height(),
     skyWidth: $(this).width()
   };
@@ -110,12 +98,29 @@
 
   };
 
+  //events: init is the kickstart animation, wind the recursive one
+  $(document).on('jqlouds.init', function(event, element) {
+    element.find('img.jqlouds-cloud').each(function() {
+      $.jQlouds.jQloudsAnimate($(this));
+    });
+  });
+
+  $(document).on('jqlouds.wind', function(event, element) {
+      $.jQlouds.jQloudsAnimate(element);
+  });
+
+
+  //animation when the first or consecutive wind blows
   $.jQlouds.jQloudsAnimate = function(element) {
-    element.animate({left: '+='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear').
-    animate({left: '+='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear').
-    animate({left: '-='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear').delay($.randomBetween(4000, 10000)).
-    animate({left: '-='+$.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear', function() {
-      $(document).trigger('jqlouds.wind',[ element ]);
+      // each element will be moved right or left randomly
+      var direction;
+      ( $.randomBetween(0, 1) === 0 ) ? direction = '+' : direction = '-';
+
+      //applying movements
+      element
+      .delay($.randomBetween(4000, 8000))
+      .animate({left: direction + '=' + $.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear', function() {
+        $(document).trigger('jqlouds.wind',[ element ]);
     });
   };
 
