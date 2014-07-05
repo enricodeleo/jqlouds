@@ -30,4 +30,4 @@ You can [see this plugin in action here][example].
 [example]: http://enricodeleo.github.io/jqlouds/
 
 ## Release History
-_(Nothing yet)_
+v0.1.0 - first release 05/07/14
