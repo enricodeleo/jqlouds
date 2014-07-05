@@ -25,7 +25,9 @@ jQuery(function($) {
 _(Coming soon)_
 
 ## Examples
-You can [see this plugin in action here][http://enricodeleo.github.io/jqlouds/].
+You can [see this plugin in action here][example].
+
+[example]: http://enricodeleo.github.io/jqlouds/
 
 ## Release History
 _(Nothing yet)_
