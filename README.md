@@ -13,7 +13,7 @@ In your web page:
 
 ```html
 <script src="jquery.js"></script>
-<script src="dist/jqlouds.min.js"></script>
+<script src="dist/jquery.jqlouds.min.js"></script>
 <script>
 jQuery(function($) {
   $('.selector').jQlouds();
@@ -25,7 +25,7 @@ jQuery(function($) {
 _(Coming soon)_
 
 ## Examples
-_(Coming soon)_
+You can [see this plugin in action here][http://enricodeleo.github.io/jqlouds/].
 
 ## Release History
 _(Nothing yet)_
