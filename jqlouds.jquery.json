@@ -6,7 +6,7 @@
   "homepage": "https://github.com/enricodeleo/jqlouds",
   "author": {
     "name": "Enrico Deleo",
-    "url": "https://github.com/enricodeleo"
+    "url": "http://enricodeleo.github.io/jqlouds"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,12 @@
     }
   ],
   "dependencies": {
-    "jquery": ">=1.9"
+    "jquery": ">=1.8"
   },
   "keywords": [
-    "jquery-plugin"
+    "clouds",
+    "decoration",
+    "animation",
+    "sky"
   ]
 }

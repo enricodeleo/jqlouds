@@ -22,7 +22,14 @@ jQuery(function($) {
 ```
 
 ## Documentation
-_(Coming soon)_
+
+###Basic usage
+As you can see in the __getting started__ section, you just need to pass a jquery selector and call the plugin in order
+to get the job done.
+You can generate multiple clouds on the same page, each element will be filled with _random static clouds_.
+
+### Options
+This plugin comes with
 
 ## Examples
 You can [see this plugin in action here][example].
@@ -30,4 +37,4 @@ You can [see this plugin in action here][example].
 [example]: http://enricodeleo.github.io/jqlouds/
 
 ## Release History
-v0.1.0 - first release 05/07/14
+__v0.1.0__ - first release 05/07/14
