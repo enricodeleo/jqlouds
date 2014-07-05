@@ -2,10 +2,6 @@
 
 ;(function($){
 
-$('#sky').jQlouds({
-  minClouds: 30, // minimum amount of clouds
-  maxClouds: 40, // maximum amount of clouds
-  wind: true
-});
+$('#sky, #sky2').jQlouds({ wind: false });
 
 })(jQuery);

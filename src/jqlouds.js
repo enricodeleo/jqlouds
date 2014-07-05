@@ -21,10 +21,10 @@
   // Collection method.
   $.fn.jQlouds = function (options) {
     options = $.extend({}, $.jQlouds.options, options);
-    return this.each(function (i) {
+    return this.each(function () {
       // retrieve clouds and append to the target element.
-      var clouds = $.jQlouds.jQloudsFactory(options);
-      $(this).addClass('jqlouds-clouds').append(clouds);
+      var clouds = $.jQlouds.jQloudsFactory(options, this);
+      $(this).addClass('jqlouds-clouds').css({ position: 'relative' }).append(clouds);
 
       //trigger init if we decided to turn  wind on
       if ( options.wind === true ) {
@@ -36,11 +36,9 @@
 
   // Static method.
   $.jQlouds = function (options) {
-    // Override default options with passed-in options.
     options = $.extend({}, $.jQlouds.options, options);
-    // Return something awesome.
-    return function(){
-      console.log(options);
+    return function() {
+
     };
   };
 
@@ -52,12 +50,12 @@
     minClouds: 20, // minimum amount of clouds
     maxClouds: 30, // maximum amount of clouds
     wind: true,
-    skyHeight: $(this).height(),
-    skyWidth: $(this).width()
   };
 
-  $.jQlouds.jQloudsFactory = function(options) {
+  $.jQlouds.jQloudsFactory = function(options ,self) {
 
+    var skyHeight = $(self).height();
+    var skyWidth = $(self).width();
     var clouds = '';
     var randomClouds = $.randomBetween(options.minClouds, options.maxClouds);
 
@@ -76,17 +74,24 @@
       // random position on the target element
       cloud.css({
         position: 'absolute',
-        bottom: options.skyHeight/$.randomBetween(2, 4) + 'px',
-        left: ( i % 2 === 0 ) ? (options.skyWidth/2) + (options.skyWidth/$.randomBetween(1, 20)) + 'px' : options.skyWidth/$.randomBetween(1, 20) + 'px'
+        bottom: skyHeight/$.randomBetween(2, 4) + 'px',
+        left: ( i % 2 === 0 ) ? (skyWidth/2) + (skyWidth/$.randomBetween(1, 20)) + 'px' : skyWidth/$.randomBetween(1, 20) + 'px'
       });
 
       //some cloud should be blurred
-      if ( $.randomBetween(1, 4) === 1 ) {
-        cloud.addClass('blur');
+      if ( $.randomBetween(1, 3) === 1 ) {
+        var filterVal = 'blur(3px)';
+        cloud
+        .addClass('blur')
+        .css('filter',filterVal)
+        .css('webkitFilter',filterVal)
+        .css('mozFilter',filterVal)
+        .css('oFilter',filterVal)
+        .css('msFilter',filterVal);
       }
 
       //sometimes clouds are less opaque
-      if ( $.randomBetween(1, 4) === 2 ) {
+      if ( $.randomBetween(1, 3) === 2 ) {
         cloud.css({ opacity: '0.' + $.randomBetween(5, 8) });
       }
 
@@ -114,7 +119,7 @@
   $.jQlouds.jQloudsAnimate = function(element) {
       // each element will be moved right or left randomly
       var direction;
-      ( $.randomBetween(0, 1) === 0 ) ? direction = '+' : direction = '-';
+      if( $.randomBetween(0, 1) === 0 ) { direction = '+'; } else { direction = '-'; }
 
       //applying movements
       element
