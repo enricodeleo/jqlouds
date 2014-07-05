@@ -24,7 +24,7 @@
     return this.each(function () {
       // retrieve clouds and append to the target element.
       var clouds = $.jQlouds.jQloudsFactory(options, this);
-      $(this).addClass('jqlouds-clouds').css({ position: 'relative' }).append(clouds);
+      $(this).addClass('jqlouds-clouds').css({ position: 'relative', minHeight: options.maxHeight + 'px' }).append(clouds);
 
       //trigger init if we decided to turn  wind on
       if ( options.wind === true ) {
@@ -46,10 +46,10 @@
   $.jQlouds.options = {
     src: 'images/cloud.png', // path to image
     maxWidth: 227, // max image's width
-    maxHeight: 96, // min image's height
+    maxHeight: 96, // amx image's height
     minClouds: 20, // minimum amount of clouds
     maxClouds: 30, // maximum amount of clouds
-    wind: true,
+    wind: false
   };
 
   $.jQlouds.jQloudsFactory = function(options ,self) {
@@ -74,7 +74,7 @@
       // random position on the target element
       cloud.css({
         position: 'absolute',
-        bottom: skyHeight/$.randomBetween(2, 4) + 'px',
+        bottom: skyHeight/$.randomBetween(2, 8) + 'px',
         left: ( i % 2 === 0 ) ? (skyWidth/2) + (skyWidth/$.randomBetween(1, 20)) + 'px' : skyWidth/$.randomBetween(1, 20) + 'px'
       });
 
@@ -123,7 +123,7 @@
 
       //applying movements
       element
-      .delay($.randomBetween(4000, 8000))
+      .delay($.randomBetween(2000, 6000))
       .animate({left: direction + '=' + $.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear', function() {
         $(document).trigger('jqlouds.wind',[ element ]);
     });
