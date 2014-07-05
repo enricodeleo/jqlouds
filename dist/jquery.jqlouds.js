@@ -1,4 +1,4 @@
-/*! jqlouds - v - 2014-07-05
+/*! jqlouds - v - 2014-07-06
 * https://github.com/enricodeleo/jqlouds
 * Copyright (c) 2014 Enrico Deleo; Licensed MIT */
 ;(function ($) {
@@ -19,7 +19,12 @@
     return this.each(function () {
       // retrieve clouds and append to the target element.
       var clouds = $.jQlouds.jQloudsFactory(options, this);
-      $(this).addClass('jqlouds-clouds').css({ position: 'relative', minHeight: options.maxHeight + 'px' }).append(clouds);
+
+      //do the job against target element
+      $(this)
+      .addClass('jqlouds-clouds')
+      .css({ position: 'relative', minHeight: options.maxHeight + 'px', height: options.skyHeight + 'px' })
+      .append(clouds);
 
       //trigger init if we decided to turn  wind on
       if ( options.wind === true ) {
@@ -44,33 +49,43 @@
     maxHeight: 96, // amx image's height
     minClouds: 20, // minimum amount of clouds
     maxClouds: 30, // maximum amount of clouds
-    wind: false
+    skyHeight: null, // height of the container element
+    wind: false // animate clouds, default is false
   };
 
   $.jQlouds.jQloudsFactory = function(options ,self) {
 
-    var skyHeight = $(self).height();
+    var skyHeight;
     var skyWidth = $(self).width();
     var clouds = '';
     var randomClouds = $.randomBetween(options.minClouds, options.maxClouds);
+
+    if ( !options.skyHeight ) {
+      skyHeight = $(self).height();
+    }
+    else {
+      skyHeight = options.skyHeight;
+    }
 
     // generate a bunch of clouds as per settings and some randomness
     for (var i = 0; i < randomClouds; i++) {
 
       var sizeRatio = $.randomBetween(1, 4);
+      var cloudHeight = Math.floor(options.maxHeight/sizeRatio);
+      var cloudWidth = Math.floor(options.maxWidth/sizeRatio);
 
       var cloud = $('<img />', {
         class: 'jqlouds-cloud',
         src: options.src,
-        height: Math.floor(options.maxHeight/sizeRatio),
-        width: Math.floor(options.maxWidth/sizeRatio),
+        height: cloudHeight,
+        width: cloudWidth,
       });
 
       // random position on the target element
       cloud.css({
         position: 'absolute',
-        bottom: skyHeight/$.randomBetween(2, 8) + 'px',
-        left: ( i % 2 === 0 ) ? (skyWidth/2) + (skyWidth/$.randomBetween(1, 20)) + 'px' : skyWidth/$.randomBetween(1, 20) + 'px'
+        bottom: ( skyHeight * ( '0.' + $.randomBetween(1, 9) + $.randomBetween(1, 9) ) - cloudHeight ) + 'px',
+        left: skyWidth * ( '0.' + $.randomBetween(1, 90) ) + 'px'
       });
 
       //some cloud should be blurred
