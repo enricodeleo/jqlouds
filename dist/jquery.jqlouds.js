@@ -1,4 +1,4 @@
-/*! jqlouds - v - 2014-07-05
+/*! jqlouds - v0.1.0 - 2014-07-05
 * https://github.com/enricodeleo/jqlouds
 * Copyright (c) 2014 Enrico Deleo; Licensed MIT */
 ;(function ($) {
