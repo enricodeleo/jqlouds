@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Jqlouds by enricodeleo</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Jqlouds</h1>
+        <h2>An awesome yet simple plugin for jquery that let&#39;s you create clouds on the fly.</h2>
+        <a href="https://github.com/enricodeleo/jqlouds" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p><img src="logo.jpg" alt="jQlouds logo" title="jQlouds logo"></p>
+
+<p>An awesome yet simple plugin for jquery that let's you create clouds on the fly.</p>
+
+<h2>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h2>
+
+<p>Download the <a href="https://github.com/enricodeleo/jqlouds/releases/download/0.2.0/jquery.jqlouds.min.js">production version</a> or the <a href="https://github.com/enricodeleo/jqlouds/releases/download/0.2.0/jquery.jqlouds.js">development version</a>.</p>
+
+<p>In your web page:</p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"jquery.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"dist/jquery.jqlouds.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">jQuery</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'.selector'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<h2>
+<a name="documentation" class="anchor" href="#documentation"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a name="basic-usage" class="anchor" href="#basic-usage"><span class="octicon octicon-link"></span></a>Basic usage</h3>
+
+<p>As you can see in the <a href="#getting-started">getting started</a> section, you just need to pass a jquery selector and call the plugin in order
+to get the job done.</p>
+
+<p>You can generate multiple clouds on the same page, each element will be filled with <em>random static clouds</em>. Note that the selected element will be relatively positioned in order to accomodate absolutely positioned clouds.</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sky1, #sky2'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">();</span>
+</pre></div>
+
+<h3>
+<a name="height-of-the-sky" class="anchor" href="#height-of-the-sky"><span class="octicon octicon-link"></span></a>Height of the sky</h3>
+
+<p>Unlike the real sky, here we know exactly how much it is height: minimu height is given automatically based on the height of the biggest cloud. You can give a different height to the element throug the plugin itself.</p>
+
+<p><strong>via css</strong></p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"sky"</span> <span class="na">style=</span><span class="s">"height:223px;"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">jQuery</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">();</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<p><strong>via jquery</strong></p>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"sky"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+<span class="nx">jQuery</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">$</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">({</span> <span class="nx">skyHeight</span><span class="o">:</span> <span class="mi">223</span> <span class="p">});</span>
+<span class="p">});</span>
+<span class="nt">&lt;/script&gt;</span>
+</pre></div>
+
+<h3>
+<a name="animation" class="anchor" href="#animation"><span class="octicon octicon-link"></span></a>Animation</h3>
+
+<p>Sometimes the wind blows and clouds became to move around the sky, isn't it? Well, you can turn on your very personal <code>wind</code> just by setting it to true:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">({</span>
+  <span class="nx">wind</span><span class="o">:</span> <span class="kc">true</span>
+<span class="p">});</span>
+</pre></div>
+
+<p><strong>note about performances</strong></p>
+
+<p>jQlouds relies on jQuery's <code>.animate()</code> to perform its animations. Since this is something quite heavy, animations come disabled by default. I'll try to improve this feature with CSS3 animations. If you'd like to contribute feel free to <a href="https://github.com/enricodeleo/jqlouds/fork">fork this project</a> and submit a pull request.</p>
+
+<h3>
+<a name="number-of-clouds" class="anchor" href="#number-of-clouds"><span class="octicon octicon-link"></span></a>Number of clouds</h3>
+
+<p>The amount of clouds is chosen randomly between 20 and 30.</p>
+
+<p>You can adjust these values settings <code>minClouds</code> and <code>maxClouds</code> parameters:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">({</span>
+  <span class="nx">minClouds</span><span class="o">:</span> <span class="mi">5</span><span class="p">,</span>
+  <span class="nx">maxClouds</span><span class="o">:</span> <span class="mi">10</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="maximum-clouds-size" class="anchor" href="#maximum-clouds-size"><span class="octicon octicon-link"></span></a>Maximum clouds' size</h3>
+
+<p>The default image provided (it is served as <em>base64 image</em> so you won't need to upload anything but the plugin) is 227x96 px. All the clouds generated are randomly sized less or equal to that size. You can adjust this behavior as per your needs with:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">({</span>
+  <span class="nx">maxWidth</span><span class="o">:</span> <span class="mi">113</span><span class="p">,</span>
+  <span class="nx">maxHeight</span><span class="o">:</span> <span class="mi">48</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="customize-the-cloud" class="anchor" href="#customize-the-cloud"><span class="octicon octicon-link"></span></a>Customize the cloud</h3>
+
+<p>If you don't like my cloud (how dare you! :P) you just need to change the <code>src</code> property when calling the plugin, like so:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">({</span>
+  <span class="nx">src</span><span class="o">:</span> <span class="s1">'path/to/image.png'</span><span class="p">,</span>
+<span class="p">});</span>
+</pre></div>
+
+<h3>
+<a name="options" class="anchor" href="#options"><span class="octicon octicon-link"></span></a>Options</h3>
+
+<p>These are all the current options supported by jQlouds, as we've seen above:</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">options</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">src</span><span class="o">:</span> <span class="s1">'images/cloud.png'</span><span class="p">,</span> <span class="c1">// path to image, the default is a base64 (you can see the actual string in sources)</span>
+  <span class="nx">maxWidth</span><span class="o">:</span> <span class="mi">227</span><span class="p">,</span> <span class="c1">// max image's width</span>
+  <span class="nx">maxHeight</span><span class="o">:</span> <span class="mi">96</span><span class="p">,</span> <span class="c1">// amx image's height</span>
+  <span class="nx">minClouds</span><span class="o">:</span> <span class="mi">20</span><span class="p">,</span> <span class="c1">// minimum amount of clouds</span>
+  <span class="nx">maxClouds</span><span class="o">:</span> <span class="mi">30</span><span class="p">,</span> <span class="c1">// maximum amount of clouds</span>
+  <span class="nx">skyHeight</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span> <span class="c1">// height of the container element</span>
+  <span class="nx">wind</span><span class="o">:</span> <span class="kc">false</span> <span class="c1">// animate clouds, default is false</span>
+<span class="p">};</span>
+
+<span class="nx">$</span><span class="p">(</span><span class="s1">'#sky'</span><span class="p">).</span><span class="nx">jQlouds</span><span class="p">(</span><span class="nx">options</span><span class="p">);</span>
+</pre></div>
+
+<h2>
+<a name="examples" class="anchor" href="#examples"><span class="octicon octicon-link"></span></a>Examples</h2>
+
+<p>You can <a href="http://enricodeleo.github.io/jqlouds/">see this plugin in action here</a>.</p>
+
+<h2>
+<a name="release-history" class="anchor" href="#release-history"><span class="octicon octicon-link"></span></a>Release History</h2>
+
+<ul>
+<li>
+<strong>v0.2.0</strong> -  06/07/14
+
+<ul>
+<li>improved clouds' positioning</li>
+<li>introduced configurable container's height</li>
+<li>written an hopefully decent <code>README.md</code>
+</li>
+</ul>
+</li>
+<li>
+<strong>v0.1.0</strong> - 05/07/14
+
+<ul>
+<li>first release</li>
+</ul>
+</li>
+</ul>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/enricodeleo/jqlouds/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/enricodeleo/jqlouds/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/enricodeleo/jqlouds"></a> is maintained by <a href="https://github.com/enricodeleo">enricodeleo</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
