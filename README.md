@@ -125,6 +125,10 @@ You can [see this plugin in action here][example].
 [example]: http://enricodeleo.github.io/jqlouds/
 
 ## Release History
+* __v0.2.3__ -  06/07/14
+  * registered to the bower repository
+  * pushed to the [jquery plugin registry](http://plugins.jquery.com/jqlouds/)
+  * published the little [demo website](http://enricodeleo.github.io/jqlouds/)
 * __v0.2.0__ -  06/07/14
   * improved clouds' positioning
   * introduced configurable container's height
