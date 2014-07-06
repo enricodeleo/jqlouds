@@ -2,7 +2,7 @@
   "name": "jqlouds",
   "title": "jQlouds",
   "description": "An awesome yet simple plugin for jquery that let's you create clouds on the fly.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "https://github.com/enricodeleo/jqlouds",
   "author": {
     "name": "Enrico Deleo",
