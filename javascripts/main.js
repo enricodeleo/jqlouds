@@ -21,6 +21,13 @@ $('#sky3').jQlouds({
   wind: true
 })
 
+$('#sky4').jQlouds({
+  src: 'images/cloud-2.png',
+  wind: true,
+  maxWidth: 240, // max image's width
+  maxHeight: 110, // amx image's height
+})
+
 })(jQuery);
 
 !function ($) {
