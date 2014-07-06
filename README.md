@@ -6,8 +6,8 @@ An awesome yet simple plugin for jquery that let's you create clouds on the fly.
 
 Download the [production version][min] or the [development version][max].
 
-[min]: https://raw.githubusercontent.com/enricodeleo/jqlouds/master/dist/jquery.jqlouds.min.js
-[max]: https://raw.githubusercontent.com/enricodeleo/jqlouds/master/dist/jquery.jqlouds.js
+[min]: https://github.com/enricodeleo/jqlouds/releases/download/0.2.0/jquery.jqlouds.min.js
+[max]: https://github.com/enricodeleo/jqlouds/releases/download/0.2.0/jquery.jqlouds.js
 
 In your web page:
 
