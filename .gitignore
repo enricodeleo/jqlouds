@@ -1,3 +1,7 @@
+#Yeoman
+bower_components/
+node_modules/
+
 #Mac_OS
 .DS_Store
 .AppleDouble
