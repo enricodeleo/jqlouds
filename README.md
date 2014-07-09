@@ -121,11 +121,15 @@ options = {
 $('#sky').jQlouds(options);
 ```
 
-
 ## Examples
 You can [see this plugin in action here][example].
 
 [example]: http://enricodeleo.github.io/jqlouds/
+
+## ToDo
+- Introduce CSS3 animations with jQuery fallback
+- SVG images with png fallback 
+- ?
 
 ## Release History
 * __v0.2.3__ -  06/07/14
