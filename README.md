@@ -128,8 +128,11 @@ You can [see this plugin in action here][example].
 
 ## ToDo
 - Introduce CSS3 animations with jQuery fallback
-- SVG images with png fallback 
+- SVG images with png fallback
 - ?
+
+## Experimental branches
+* the branch `css3` is an early attempt to adopt css3 transforms instead of jquery's animate.
 
 ## Release History
 * __v0.2.3__ -  06/07/14
