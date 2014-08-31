@@ -6,9 +6,21 @@
  * license url: http://www.opensource.org/licenses/mit-license.php
  */
 
- ;(function($) {
-  var delay = 0;
+;(function ($) {
+
+  //we'll need random numbers
+  $.extend({
+    random: function(X) {
+      return Math.floor(X * (Math.random() % 1));
+    },
+    randomBetween: function(MinV, MaxV) {
+      return MinV + $.random(MaxV - MinV + 1);
+    }
+  });
+
+  // translate3d method as suggested by Camerone Spear @ http://cameronspear.com/blog/animating-translate3d-with-jquery/
   $.fn.translate3d = function(translations, speed, easing, complete) {
+    var delay = 0;
     var opt = $.speed(speed, easing, complete);
     opt.easing = opt.easing || 'ease';
     translations = $.extend({x: 0, y: 0, z: 0}, translations);
@@ -32,19 +44,6 @@
       }, opt.duration + (delay || 0));
     });
   };
-})(jQuery);
-
-;(function ($) {
-
-  //we'll need random numbers
-  $.extend({
-    random: function(X) {
-      return Math.floor(X * (Math.random() % 1));
-    },
-    randomBetween: function(MinV, MaxV) {
-      return MinV + $.random(MaxV - MinV + 1);
-    }
-  });
 
   // Collection method.
   $.fn.jQlouds = function (options) {
