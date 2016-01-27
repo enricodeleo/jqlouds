@@ -1,6 +1,6 @@
 {
   "name": "jqlouds",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/jquery.jqlouds.min.js",
   "dependencies": {
     "jquery": "~1.8"
