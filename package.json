@@ -1,18 +1,23 @@
 {
   "name": "jqlouds",
   "description": "jQlouds",
+  "version": "1.0.0",
   "keywords": [
-    "jquery-plugin"
+    "jquery-plugin",
+    "ecosystem:jquery"
   ],
   "homepage": "https://github.com/enricodeleo/jqlouds",
   "author": {
     "name": "Enrico Deleo",
-    "email": "enrico@lisergi.co",
+    "email": "hello@enricodeleo.com",
     "url": "https://github.com/enricodeleo"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/enricodeleo/jqlouds.git"
+  },
+  "bugs": {
+    "url": "https://github.com/enricodeleo/jqlouds/issues"
   },
   "licenses": [
     {

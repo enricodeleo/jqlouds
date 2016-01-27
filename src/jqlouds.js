@@ -1,12 +1,44 @@
 /*
  * jQlouds
  * An awesome yet simple plugin for jquery that let's you create clouds on the fly.
- * Copyright (c) 2014 Enrico Deleo - enricodeleo.com
+ * Copyright (c) 2014-2016 Enrico Deleo - enricodeleo.com
  * Licensed under the MIT license.
  * license url: http://www.opensource.org/licenses/mit-license.php
  */
 
 ;(function ($) {
+
+  function check3Dsupport() {
+    if (!window.getComputedStyle) {
+      return false;
+    }
+
+    var el = document.createElement('p');
+    var has3d;
+    var transforms = {
+      'webkitTransform':'-webkit-transform',
+      'OTransform':'-o-transform',
+      'msTransform':'-ms-transform',
+      'MozTransform':'-moz-transform',
+      'transform':'transform'
+    };
+
+    // Add it to the body to get the computed style
+    document.body.insertBefore(el, null);
+
+    for(var t in transforms){
+      if( el.style[t] !== undefined ){
+        el.style[t] = 'translate3d(1px,1px,1px)';
+        has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+      }
+    }
+
+    document.body.removeChild(el);
+
+    return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+  }
+
+  var has3d = check3Dsupport(); // cache the result in a variable
 
   //we'll need random numbers
   $.extend({
@@ -17,6 +49,33 @@
       return MinV + $.random(MaxV - MinV + 1);
     }
   });
+
+  // translate3d method as suggested by Camerone Spear @ http://cameronspear.com/blog/animating-translate3d-with-jquery/
+  $.fn.translate3d = function(translations, speed, easing, complete) {
+    var delay = 0;
+    var opt = $.speed(speed, easing, complete);
+    opt.easing = opt.easing || 'ease';
+    translations = $.extend({x: 0, y: 0, z: 0}, translations);
+
+    return this.each(function() {
+      var $this = $(this);
+
+      $this.css({
+        transitionDuration: opt.duration + 'ms',
+        transitionTimingFunction: opt.easing,
+        transform: 'translate3d(' + translations.x + 'px, ' + translations.y + 'px, ' + translations.z + 'px)'
+      });
+
+      setTimeout(function() {
+        $this.css({
+          transitionDuration: '0s',
+          transitionTimingFunction: 'ease'
+        });
+
+        opt.complete();
+      }, opt.duration + (delay || 0));
+    });
+  };
 
   // Collection method.
   $.fn.jQlouds = function (options) {
@@ -129,19 +188,37 @@
       $.jQlouds.jQloudsAnimate(element);
   });
 
-
   //animation when the first or consecutive wind blows
   $.jQlouds.jQloudsAnimate = function(element) {
-      // each element will be moved right or left randomly
-      var direction;
-      if( $.randomBetween(0, 1) === 0 ) { direction = '+'; } else { direction = '-'; }
+    // each element will be moved right or left randomly
+    var direction;
+    if( $.randomBetween(0, 1) === 0 ) { direction = '+'; } else { direction = '-'; }
 
-      //applying movements
+    //applying movements
+    if ( has3d ) {
       element
       .delay($.randomBetween(2000, 6000))
-      .animate({left: direction + '=' + $.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear', function() {
-        $(document).trigger('jqlouds.wind',[ element ]);
-    });
+      .translate3d({
+        x: direction + $.randomBetween(30, 60)
+      },
+      $.randomBetween(4000, 7000),
+      'linear',
+      function() {
+        $(document).trigger('jqlouds.wind', [ element ]);
+      });
+    }
+    else {
+      element
+      .delay($.randomBetween(2000, 6000))
+      .animate({
+        left: direction + '=' + $.randomBetween(10, 40)
+      },
+      $.randomBetween(4000, 7000),
+      'linear',
+      function() {
+        $(document).trigger('jqlouds.wind', [ element ]);
+      });
+    }
   };
 
-}(jQuery));
+})(jQuery);
