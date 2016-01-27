@@ -127,11 +127,17 @@ You can [see this plugin in action here][example].
 [example]: http://enricodeleo.github.io/jqlouds/
 
 ## ToDo
-- Introduce CSS3 animations with jQuery fallback
-- SVG images with png fallback
-- ?
+:heavy_check_mark: Introduce CSS3 animations with jQuery.animate() fallback
+:heavy_check_mark: Release on bower registry
+:heavy_check_mark: Release on jQuery Plugins registry (until 0.2.3 since the registry is now deprecated)
+:heavy_check_mark: Release on npm as per jQuery new policy
+:heavy_multiplication_x: SVG images with png fallback
+:heavy_multiplication_x: ? (__suggestion welcomed__)
 
 ## Release History
+* __v1.0.0__ - 27/01/15
+  * check for 3D support and apply jQyery.animate() as a fallback if not supported
+  * bumped version to 1.0.0 on bower and jquery
 * __v0.2.3-css3__ - 27/01/15
   * alternative version that leverage __hardware acceleration__ via CSS3 and translate3d (see [the css3 branch](https://github.com/enricodeleo/jqlouds/tree/css3))
 * __v0.2.3__ -  06/07/14
