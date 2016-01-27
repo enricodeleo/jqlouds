@@ -1,6 +1,7 @@
 {
   "name": "jqlouds",
   "description": "jQlouds",
+  "version": "1.0.0",
   "keywords": [
     "jquery-plugin"
   ],
