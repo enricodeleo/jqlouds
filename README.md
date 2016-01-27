@@ -11,11 +11,14 @@ You can include jQlouds in your project with bower with:
 bower install jqlouds --save
 ```
 
-### Manual
-Download the [production version][min] or the [development version][max] and include script after the jQuery library (unless you are packaging scripts somehow else).
+### npm
 
-[min]: https://github.com/enricodeleo/jqlouds/releases/download/0.2.0/jquery.jqlouds.min.js
-[max]: https://github.com/enricodeleo/jqlouds/releases/download/0.2.0/jquery.jqlouds.js
+```bash
+npm install jqlouds
+```
+
+### Manual
+Download the [package](https://github.com/enricodeleo/jqlouds/archive/1.0.0.zip), unzip it and include the preferred script within `/dist` (minified or not) after the jQuery library (unless you are packaging scripts somehow else).
 
 In your web page:
 
