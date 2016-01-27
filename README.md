@@ -135,6 +135,8 @@ You can [see this plugin in action here][example].
 * the branch `css3` is an early attempt to adopt css3 transforms instead of jquery's animate.
 
 ## Release History
+* __v0.2.3-css3__ - 27/01/15
+  * alternative version that leverage __hardware acceleration__ via CSS3 and translate3d (see (the css3 branch)[https://github.com/enricodeleo/jqlouds/tree/css3])
 * __v0.2.3__ -  06/07/14
   * registered to the bower repository
   * pushed to the [jquery plugin registry](http://plugins.jquery.com/jqlouds/)
