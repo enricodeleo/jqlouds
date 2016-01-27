@@ -1,7 +1,39 @@
-/*! jqlouds - v - 2016-01-27
+/*! jqlouds - v1.0.0 - 2016-01-27
 * https://github.com/enricodeleo/jqlouds
 * Copyright (c) 2016 Enrico Deleo; Licensed MIT */
 ;(function ($) {
+
+  function check3Dsupport() {
+    if (!window.getComputedStyle) {
+      return false;
+    }
+
+    var el = document.createElement('p');
+    var has3d;
+    var transforms = {
+      'webkitTransform':'-webkit-transform',
+      'OTransform':'-o-transform',
+      'msTransform':'-ms-transform',
+      'MozTransform':'-moz-transform',
+      'transform':'transform'
+    };
+
+    // Add it to the body to get the computed style
+    document.body.insertBefore(el, null);
+
+    for(var t in transforms){
+      if( el.style[t] !== undefined ){
+        el.style[t] = 'translate3d(1px,1px,1px)';
+        has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+      }
+    }
+
+    document.body.removeChild(el);
+
+    return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+  }
+
+  var has3d = check3Dsupport(); // cache the result in a variable
 
   //we'll need random numbers
   $.extend({
@@ -151,19 +183,37 @@
       $.jQlouds.jQloudsAnimate(element);
   });
 
-
   //animation when the first or consecutive wind blows
   $.jQlouds.jQloudsAnimate = function(element) {
-      // each element will be moved right or left randomly
-      var direction;
-      if( $.randomBetween(0, 1) === 0 ) { direction = '+'; } else { direction = '-'; }
+    // each element will be moved right or left randomly
+    var direction;
+    if( $.randomBetween(0, 1) === 0 ) { direction = '+'; } else { direction = '-'; }
 
-      //applying movements
+    //applying movements
+    if ( has3d ) {
       element
       .delay($.randomBetween(2000, 6000))
-      .translate3d({ x: direction + $.randomBetween(30, 60) }, $.randomBetween(4000, 7000), 'linear', function() {
+      .translate3d({
+        x: direction + $.randomBetween(30, 60)
+      },
+      $.randomBetween(4000, 7000),
+      'linear',
+      function() {
         $(document).trigger('jqlouds.wind', [ element ]);
-    });
+      });
+    }
+    else {
+      element
+      .delay($.randomBetween(2000, 6000))
+      .animate({
+        left: direction + '=' + $.randomBetween(10, 40)
+      },
+      $.randomBetween(4000, 7000),
+      'linear',
+      function() {
+        $(document).trigger('jqlouds.wind', [ element ]);
+      });
+    }
   };
 
-}(jQuery));
+})(jQuery);
