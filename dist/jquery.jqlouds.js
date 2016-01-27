@@ -1,6 +1,6 @@
-/*! jqlouds - v - 2014-07-06
+/*! jqlouds - v - 2016-01-27
 * https://github.com/enricodeleo/jqlouds
-* Copyright (c) 2014 Enrico Deleo; Licensed MIT */
+* Copyright (c) 2016 Enrico Deleo; Licensed MIT */
 ;(function ($) {
 
   //we'll need random numbers
@@ -12,6 +12,33 @@
       return MinV + $.random(MaxV - MinV + 1);
     }
   });
+
+  // translate3d method as suggested by Camerone Spear @ http://cameronspear.com/blog/animating-translate3d-with-jquery/
+  $.fn.translate3d = function(translations, speed, easing, complete) {
+    var delay = 0;
+    var opt = $.speed(speed, easing, complete);
+    opt.easing = opt.easing || 'ease';
+    translations = $.extend({x: 0, y: 0, z: 0}, translations);
+
+    return this.each(function() {
+      var $this = $(this);
+
+      $this.css({
+        transitionDuration: opt.duration + 'ms',
+        transitionTimingFunction: opt.easing,
+        transform: 'translate3d(' + translations.x + 'px, ' + translations.y + 'px, ' + translations.z + 'px)'
+      });
+
+      setTimeout(function() {
+        $this.css({
+          transitionDuration: '0s',
+          transitionTimingFunction: 'ease'
+        });
+
+        opt.complete();
+      }, opt.duration + (delay || 0));
+    });
+  };
 
   // Collection method.
   $.fn.jQlouds = function (options) {
@@ -134,8 +161,8 @@
       //applying movements
       element
       .delay($.randomBetween(2000, 6000))
-      .animate({left: direction + '=' + $.randomBetween(10, 40)}, $.randomBetween(4000, 7000), 'linear', function() {
-        $(document).trigger('jqlouds.wind',[ element ]);
+      .translate3d({ x: direction + $.randomBetween(30, 60) }, $.randomBetween(4000, 7000), 'linear', function() {
+        $(document).trigger('jqlouds.wind', [ element ]);
     });
   };
 
