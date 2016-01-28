@@ -1,8 +1,26 @@
 {
   "name": "jqlouds",
-  "version": "1.0.0",
+  "description": "An awesome yet simple plugin for jquery that let's you create clouds on the fly.",
+  "version": "1.0.1",
   "main": "dist/jquery.jqlouds.min.js",
   "dependencies": {
     "jquery": "~1.8"
-  }
+  },
+  "keywords": [
+    "motion",
+    "clouds",
+    "jquery",
+    "animation",
+    "decoration",
+    "effects",
+    "dynamic"
+  ],
+  "authors": [
+    "Enrico Deleo <hello@enricodeleo.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "node_modules",
+    "example"
+  ]
 }
